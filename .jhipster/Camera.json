@@ -1,0 +1,122 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120112103",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "camera",
+  "fields": [
+    {
+      "fieldName": "ipAddress",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "IP адрес."
+    },
+    {
+      "fieldName": "port",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "4",
+      "javadoc": "Порт."
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "Логин от камеры."
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "Пароль от камеры."
+    },
+    {
+      "fieldName": "mainPath",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "Основной адрес камеры до IP."
+    },
+    {
+      "fieldName": "secondaryPath",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "Доп. адрес камеры до IP."
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "Польный пут до камеры."
+    },
+    {
+      "fieldName": "model",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "Модель камеры."
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Прикрепленный имя - псевдоним."
+    },
+    {
+      "fieldName": "vendorName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "Бренд камеры."
+    },
+    {
+      "fieldName": "activated",
+      "fieldType": "Boolean",
+      "javadoc": "Включение/Отключения."
+    },
+    {
+      "fieldName": "hlsUrl",
+      "fieldType": "String",
+      "javadoc": "Путь до видео файла."
+    },
+    {
+      "fieldName": "isTemp",
+      "fieldType": "Boolean",
+      "javadoc": "Обозначения временных камер."
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "CameraStatusEnum",
+      "fieldTypeJavadoc": "Статус камеры.",
+      "fieldValues": "ONLINE,OFFLINE,TECHNICAL_WORK,DELETED",
+      "javadoc": "Статус камеры."
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String",
+      "javadoc": "Доп инфо."
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Camera",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "location",
+      "relationshipName": "location",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "typeOfCamera",
+      "relationshipName": "typeOfCamera",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

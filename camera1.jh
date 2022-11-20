@@ -1,0 +1,118 @@
+
+/** Улица. */
+entity Street {
+	name String required maxlength(128) unique,
+    info String maxlength(1024)
+}
+
+/** Район. */
+entity District {
+	name String required maxlength(128) unique,
+    info String maxlength(1024)
+}
+
+/** Город. */
+entity City {
+	name String required maxlength(128) unique,
+    info String maxlength(1024)
+}
+
+/** Регион. */
+entity Region {
+	name String required maxlength(128) unique,
+    info String maxlength(1024)
+}
+
+/** Страна. */
+entity Country {
+	name String required maxlength(128) unique,
+    info String maxlength(1024)
+}
+
+/** Локация - полный объект. */
+entity Location {
+	home String,
+    latitude String,
+    longitude String,
+    info String maxlength(1024)
+}
+
+relationship ManyToOne {
+	Location{street} to Street,
+    Street{district} to District,
+    District{city} to City,
+    City{regiob} to Region,
+    Region{country} to Country
+}
+
+entity Camera {
+	/** IP адрес. */
+	ipAddress String maxlength(64) required,
+    
+    /** Порт. */
+	port String maxlength(4) required,
+    
+    /** Логин от камеры. */
+    login String maxlength(64) required,
+    
+    /** Пароль от камеры. */
+    password String maxlength(128) required,
+    
+    /** Основной адрес камеры до IP. */
+    mainPath String maxlength(128) required,
+    
+    /** Доп. адрес камеры до IP. */
+    secondaryPath String maxlength(128) required,
+    
+    /** Польный пут до камеры. */
+    url String maxlength(256) unique,
+    
+    /** Модель камеры. */
+    model String maxlength(64),
+    
+    /** Прикрепленный имя - псевдоним. */
+    name String,
+    
+    /** Бренд камеры. */
+    vendorName String maxlength(64),
+    
+    /** Включение/Отключения. */
+    activated Boolean,
+    
+    /** Путь до видео файла. */
+    hlsUrl String,
+    
+    /** Обозначения временных камер. */
+    isTemp Boolean,
+    
+    /** Статус камеры. */
+    status CameraStatusEnum,
+    
+    /** Доп инфо. */
+    info String
+}
+
+relationship ManyToOne {
+	Camera{location} to Location,
+    Camera{typeOfCamera} to TypeOfCamera
+}
+
+/** Тип камеры (распознавания и.д). */
+entity TypeOfCamera {
+	name String unique maxlength(64) required
+    info String
+}
+
+/** Статус камеры. */
+enum CameraStatusEnum {
+	ONLINE, OFFLINE, TECHNICAL_WORK, DELETED
+}
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
