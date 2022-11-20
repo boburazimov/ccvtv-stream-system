@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120112104",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "type_of_camera",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "64"
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Тип камеры (распознавания и.д).",
+  "jpaMetamodelFiltering": false,
+  "name": "TypeOfCamera",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
